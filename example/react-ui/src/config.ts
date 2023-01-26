@@ -1,6 +1,6 @@
 const config = {
   contract: {
-    address: "0x4c8aCB9c58C3E44e7165cbdEbf3ED7f9fD8bAEf9",
+    address: "0x2e4FBa4C5ce820707f1bFAD90f57eab6aF80c4d5",
     abi: [
       {
         anonymous: false,

@@ -12,12 +12,12 @@ import config from "./config"
 const domainType = [
   { name: "name", type: "string" },
   { name: "version", type: "string" },
-  { name: "salt", type: "bytes32" },
   { name: "verifyingContract", type: "address" },
+  { name: "salt", type: "bytes32" },
 ]
 
 const metaTransactionType = [
-  { name: "nonce", type: "uint256" },
+  { name: "nonce", type: "bytes32" },
   { name: "from", type: "address" },
   { name: "functionSignature", type: "bytes" },
 ]
@@ -102,14 +102,13 @@ function App() {
   }
 
   const onSubmit = async () => {
-    console.log(contract)
     if (newQuote !== "" && contract) {
       console.log("Sending meta transaction...")
       let userAddress = selectedAddress
       let nonce = await contract.methods.getNonce(userAddress).call()
       let functionSignature = contract.methods.setQuote(newQuote).encodeABI()
       let message = {
-        nonce,
+        nonce: "0x" + Number(nonce).toString(16).padStart(64, "0"),
         from: userAddress,
         functionSignature,
       }

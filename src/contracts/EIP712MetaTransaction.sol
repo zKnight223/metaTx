@@ -14,13 +14,13 @@ contract EIP712MetaTransaction is EIP712Base {
   );
 
   struct MetaTransaction {
-    uint256 nonce;
+    bytes32 nonce;
     address from;
     bytes functionSignature;
   }
 
   bytes32 private constant META_TRANSACTION_TYPEHASH =
-    keccak256(bytes("MetaTransaction(uint256 nonce,address from,bytes functionSignature)"));
+    keccak256(bytes("MetaTransaction(bytes32 nonce,address from,bytes functionSignature)"));
   mapping(address => uint256) private nonces;
 
   constructor(string memory name, string memory version) EIP712Base(name, version) {}
@@ -49,7 +49,7 @@ contract EIP712MetaTransaction is EIP712Base {
     );
 
     MetaTransaction memory metaTx = MetaTransaction({
-      nonce: nonces[userAddress],
+      nonce: bytes32(nonces[userAddress]),
       from: userAddress,
       functionSignature: functionSignature
     });

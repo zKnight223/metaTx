@@ -34,7 +34,7 @@ contract EIP712Base {
     }
   }
 
-  function getDomainSeparator() private view returns (bytes32) {
+  function getDomainSeparator() public view returns (bytes32) {
     return domainSeparator;
   }
 
