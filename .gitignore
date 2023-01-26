@@ -1,0 +1,7 @@
+src/node_modules
+src/.env
+src/.secret.json
+src/artifacts
+src/cache
+src/typechain-types
+example/react-ui/node_modules
